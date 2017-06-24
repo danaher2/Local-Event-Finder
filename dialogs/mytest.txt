@@ -1,0 +1,9 @@
+LaunchRequest
+GetEventsIntent Topic=technology Location=boston DateRange=next%20week
+NextEventIntent
+NextEventIntent
+NextEventIntent
+EventDetailsIntent
+AttendEventIntent
+AMAZON.HelpIntent
+AMAZON.StopIntent

@@ -1,0 +1,248 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "EventDetailsIntent",
+      "samples": [
+        "Yes",
+        "yup",
+        "yeah",
+        "tell me more",
+        "show me",
+        "more"
+      ],
+      "slots": []
+    },
+    {
+      "name": "GetEventsIntent",
+      "samples": [
+        "Find {Topic} events near {Location} {DateRange}",
+        "Show me {Topic} near {Location} {DateRange} ",
+        "I want to see all events {DateRange} about {Topic} near {Location} "
+      ],
+      "slots": [
+        {
+          "name": "Topic",
+          "type": "Topic",
+          "samples": [
+            "I want events about {Topic}",
+            "{Topic}",
+            "Show me events about {Topic}",
+            "{Topic} events"
+          ]
+        },
+        {
+          "name": "Location",
+          "type": "AMAZON.US_CITY",
+          "samples": [
+            "search near {Location}",
+            "{Location}",
+            "near {Location} ",
+            "events in {Location}"
+          ]
+        },
+        {
+          "name": "DateRange",
+          "type": "DateRange",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "NextEventIntent",
+      "samples": [
+        "next",
+        "next event",
+        "not this one",
+        "another"
+      ],
+      "slots": []
+    }
+  ],
+  "types": [
+    {
+      "name": "DateRange",
+      "values": [
+        {
+          "name": {
+            "value": "next week"
+          }
+        },
+        {
+          "name": {
+            "value": "next month"
+          }
+        },
+        {
+          "name": {
+            "value": "this week"
+          }
+        },
+        {
+          "name": {
+            "value": "this weekend"
+          }
+        },
+        {
+          "name": {
+            "value": "this month"
+          }
+        },
+        {
+          "name": {
+            "value": "tomorrow"
+          }
+        },
+        {
+          "name": {
+            "value": "today"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Topic",
+      "values": [
+        {
+          "name": {
+            "value": "Alexa"
+          }
+        },
+        {
+          "name": {
+            "value": "Node JS"
+          }
+        },
+        {
+          "name": {
+            "value": "Tech"
+          }
+        },
+        {
+          "name": {
+            "value": "Amazon Web Services"
+          }
+        },
+        {
+          "name": {
+            "value": "dot net"
+          }
+        },
+        {
+          "name": {
+            "value": "Angular"
+          }
+        },
+        {
+          "name": {
+            "value": "Sustainability"
+          }
+        },
+        {
+          "name": {
+            "value": "Networking"
+          }
+        },
+        {
+          "name": {
+            "value": "Technology"
+          }
+        },
+        {
+          "name": {
+            "value": "Mixer"
+          }
+        },
+        {
+          "name": {
+            "value": "hackathons"
+          }
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Elicit.Intent-GetEventsIntent.IntentSlot-Topic",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What kind of event do you want to go to?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-GetEventsIntent.IntentSlot-Location",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What location do you want me to search near?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "EventDetailsIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": []
+      },
+      {
+        "name": "GetEventsIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "Topic",
+            "type": "Topic",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-GetEventsIntent.IntentSlot-Topic"
+            }
+          },
+          {
+            "name": "Location",
+            "type": "AMAZON.US_CITY",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-GetEventsIntent.IntentSlot-Location"
+            }
+          },
+          {
+            "name": "DateRange",
+            "type": "DateRange",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          }
+        ]
+      },
+      {
+        "name": "NextEventIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": []
+      }
+    ]
+  }
+}
